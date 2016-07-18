@@ -1,7 +1,3 @@
-/**
- * Created by TBtuo on 11/07/16.
- */
-
 var http = require('http');
 var fs = require('fs');
 
@@ -14,7 +10,9 @@ var server = http.createServer(function(req, res) {
 });
 
 // Chargement de socket.io
-var io = require('socket.io').listen(server);
+// var io = require('socket.io').listen(server);
+var socket = require('socket.io');
+var io = socket.listen(server);
 
 io.sockets.on('connection', function (socket, pseudo) {
     // Quand un client se connecte, on lui envoie un message
@@ -33,6 +31,8 @@ io.sockets.on('connection', function (socket, pseudo) {
         console.log(socket.pseudo + ' me parle ! Il me dit : ' + message);
     });
 });
+
+
 
 
 server.listen(8080);
