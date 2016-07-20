@@ -51,10 +51,16 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
     var server = io.connect('http://localhost:8081');
-    server.on('messages', function (data) { // listen for 'messages' events
-        alert(data.hello);
-    })
+    // server.on('messages', function (data) { // listen for 'messages' events
+    //     alert(data.hello);
+    // })
+
+    $('#chat_form').submit(function (e) {
+      var message = $('chat_input').val();
+      // emit the'messages' event on the server
+      server.emit('messages', message);
+    });
+
 </script>
 </body>
 </html>
-
